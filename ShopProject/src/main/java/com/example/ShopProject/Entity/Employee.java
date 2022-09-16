@@ -6,18 +6,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Data
+@Component
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
+@Table(name = "tbl_employee",
+        uniqueConstraints = @UniqueConstraint(
+                name = "email_unique",
+                columnNames = "email_address")
+
+
+)
 public class Employee {
     @Id
     @GenericGenerator(name = "UUID",
@@ -36,6 +43,7 @@ public class Employee {
     @Column(name = "email_address", nullable = false)
     String Email;
 
+    @Column(name= "phone" , nullable = false , columnDefinition = "Int(11)")
     Integer telephoneNumber;
 
     @Column(name = "password", nullable = false, columnDefinition = "char(20)")

@@ -4,20 +4,26 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
 @Data
+@Component
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
+@Table(name = "tbl_country",
+        uniqueConstraints = @UniqueConstraint(
+                name = "country_unique",
+                columnNames = "country_name")
+
+)
 public class Country {
 
     @Id
     Integer countryId;
-    @Column(name = "country_name" , nullable = false )
+    @Column(name = "country_name" , nullable = false  )
     String countryName ;
 }

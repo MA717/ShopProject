@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @Data
 @AllArgsConstructor
@@ -14,12 +16,16 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
     CustomerRepository customerRepository;
 
-    public Customer saveCustomer( Customer customer){
+    public Customer getCustomer(UUID uuid) {
+        return customerRepository.findById(uuid).get();
+    }
+
+    public Customer saveCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
-    public int updateCusomerTelephoneNr( String email , int telephone )
-    {
-        return customerRepository.updateTelephonByEmail(email , telephone);
+
+    public int updateCusomerTelephoneNr(String email, int telephone) {
+        return customerRepository.updateTelephonByEmail(email, telephone);
     }
 
 

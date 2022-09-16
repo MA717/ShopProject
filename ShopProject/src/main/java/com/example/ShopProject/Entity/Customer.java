@@ -23,7 +23,6 @@ import java.util.UUID;
                 name = "email_unique",
                 columnNames = "email_address")
 
-
 )
 public class Customer {
     @Id
@@ -38,9 +37,8 @@ public class Customer {
     String lastName;
     String street;
     int houseNr;
-    @ManyToOne(
-            fetch = FetchType.LAZY
-           )
+    @ManyToOne
+
     @JoinColumn(
             name = "postal_id",
             referencedColumnName = "postalId",
@@ -54,8 +52,7 @@ public class Customer {
 
     @Column(name = "user_password",
             nullable = false,
-            columnDefinition = "Integer(6)",
-            length = 6)
+            columnDefinition = "Int(6)")
     int Password;
 
 

@@ -18,26 +18,25 @@ class PostalLocationRepositoryTest {
     PostalLocationRepository postalLocationRepository;
     @Test
     void saveToDataBase() {
-
-        postalLocation = PostalLocation.builder()
-                .postalId(231452)
-                .Location("Heded Abad")
-                .countryId(32)
-                .build();
-
-
-        customer = Customer.builder()
-                .Email("MohamedAyman@gmail.com")
-                .Password(21334332)
-                .houseNr(12)
-                .postalLocation(postalLocation)
-                .firstName("Mohamed")
-                .lastName("Ayman")
-                .street("Dusseldorf")
-                .telephoneNr(012343235)
-                .build();
-
-
-        customerRepository.save(customer);
+//
+//        postalLocation = PostalLocation.builder()
+//                .postalId(231452)
+//                .Location("Heded Abad")
+//                .build();
+//
+//
+//        customer = Customer.builder()
+//                .Email("MohamedAyman@gmail.com")
+//                .Password(21334332)
+//                .houseNr(12)
+//                .postalLocation(postalLocation)
+//                .firstName("Mohamed")
+//                .lastName("Ayman")
+//                .street("Dusseldorf")
+//                .telephoneNr(012343235)
+//                .build();
+//
+//
+//        customerRepository.save(customer);
     }
 }

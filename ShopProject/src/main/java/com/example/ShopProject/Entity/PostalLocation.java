@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
-
 @Component
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(name = "tbl_postallocation")
 public class PostalLocation {
     @Id
     @Column(name = "postalId",
@@ -25,6 +25,6 @@ public class PostalLocation {
     String Location;
     @ManyToOne
             @JoinColumn(name = "country_id" ,
-            referencedColumnName = "countryId")
+            referencedColumnName = "countryId" , nullable = false)
     Country country ;
 }
