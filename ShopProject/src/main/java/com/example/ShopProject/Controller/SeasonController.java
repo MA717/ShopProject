@@ -5,6 +5,7 @@ import com.example.ShopProject.Service.SeasonService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -12,15 +13,20 @@ import java.util.UUID;
 public class SeasonController {
     SeasonService seasonService ;
 
-    @PostMapping("/Season")
+    @PostMapping("/season")
     public Season AddSeason(@RequestBody Season season)
     {
         return seasonService.saveSeason(season);
     }
-    @GetMapping("/Season/{id}")
+    @GetMapping("/season/{id}")
     public Season getSeason(@PathVariable("id")UUID uuid)
     {
         return seasonService.getSeason(uuid);
+    }
+
+    @GetMapping("/season/showall")
+    public List<Season> getAllSeason(){
+        return  seasonService.showAllSeason();
     }
 
 }

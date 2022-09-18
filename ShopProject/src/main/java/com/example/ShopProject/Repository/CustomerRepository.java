@@ -18,8 +18,5 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
     int updateTelephonByEmail( String Email , int telephone_nr );
 
 
-
-
-
-
+    Customer findByEmailAndPassword(String email, int password);
 }

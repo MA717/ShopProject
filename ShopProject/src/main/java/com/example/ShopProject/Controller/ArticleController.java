@@ -16,19 +16,19 @@ public class ArticleController {
     ArticleService articleService ;
 
     // only employee can add new article
-    @PostMapping("/Article")
+    @PostMapping("/article/add")
     public Article addArticle(@RequestBody Article article)
     {
         return articleService.saveArticle(article);
     }
 
-    @GetMapping("/Article/{id}")
+    @GetMapping("/article/{id}")
     public Article getArticle(@PathVariable("id") UUID uuid)
     {
         return articleService.getArticle(uuid);
     }
 
-    @GetMapping("/Article")
+    @GetMapping("/article")
     public List<Article> getAllArticle()
     {
         return articleService.getAllArticle();

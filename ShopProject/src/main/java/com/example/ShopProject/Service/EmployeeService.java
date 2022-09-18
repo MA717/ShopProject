@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
+
 @Service
 @Data
 @AllArgsConstructor
@@ -19,4 +21,10 @@ public class EmployeeService {
           return  employeeRepository.save(employee);
     }
 
+    public Employee getEmployee(String email , String password ) {
+
+        return employeeRepository.findByEmailAndPassword(email , password);
+
+
+    }
 }

@@ -22,9 +22,8 @@ public class SeasonService {
     public Season getSeason(UUID season_id) {
         return seasonRepository.findById(season_id).get();
     }
-    public List<Season> getAllCategories( )
-    {
-        return  seasonRepository.findAll() ;
-    }
 
+    public List<Season> showAllSeason() {
+        return seasonRepository.findAll();
+    }
 }

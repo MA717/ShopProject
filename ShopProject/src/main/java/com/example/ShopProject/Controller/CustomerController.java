@@ -5,6 +5,7 @@ import com.example.ShopProject.Service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -13,17 +14,26 @@ public class CustomerController {
     CustomerService customerService;
 
 
-    @PostMapping("/Customer/SignUp")
+    @PostMapping("/customer/signup")
     public Customer addCustomer(@RequestBody Customer customer) {
         return customerService.saveCustomer(customer);
     }
 
-    @GetMapping("/Customer/{id}")
+
+    @PostMapping("/customer/login")
+    public Boolean loginCustomer(@RequestBody Map<String, String> login) {
+
+        return customerService.loginCustomer(login.get("email"), login.get("password"));
+    }
+
+    // only employee can get the customer information by id
+    @GetMapping("/customer/{id}")
     public Customer getCustomer(@PathVariable("id") UUID uuid) {
         return customerService.getCustomer(uuid);
     }
 
-    @PutMapping("/Customer/update/{email}")
+    // update customer phone number
+    @PutMapping("/Customer/update_number/{email}")
     public int updateCustomer(@PathVariable("email") String email, @RequestBody Integer telephoneNr) {
 
         return customerService.updateCusomerTelephoneNr(email, telephoneNr);

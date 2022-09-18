@@ -14,11 +14,13 @@ public class OrderController  {
     OrderService orderService;
 
 
-    @PostMapping("/order")
+    @PostMapping("/order/checkout")
     Order saveOrder(@RequestBody Order order){
        return orderService.SaveOrder(order);
     }
 
+
+    // get order details , both customer and Employee could get this route
     @GetMapping("/order/{id}")
     Order getOrder(@PathVariable("id")UUID uuid)
     {
@@ -26,7 +28,7 @@ public class OrderController  {
     }
 
 
-    // only the Emloyee can change the Status of the Order
+    // only the Employee can change the Status of the Order
     // to be done by Authentication
     @PutMapping( "/order/{id}/status")
     Order changeOrderStatus(@PathVariable("id")UUID uuid, @RequestBody OrderStatus status )

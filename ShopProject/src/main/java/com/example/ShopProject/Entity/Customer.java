@@ -48,12 +48,12 @@ public class Customer {
     int telephoneNr;
 
     @Column(name = "email_address", nullable = false)
-    String Email;
+    String email;
 
     @Column(name = "user_password",
             nullable = false,
             columnDefinition = "Int(6)")
-    int Password;
+    int password;
 
 
 }

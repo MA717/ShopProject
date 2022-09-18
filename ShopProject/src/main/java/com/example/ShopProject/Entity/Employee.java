@@ -41,7 +41,7 @@ public class Employee {
     String lastName;
 
     @Column(name = "email_address", nullable = false)
-    String Email;
+    String email;
 
     @Column(name= "phone" , nullable = false , columnDefinition = "Int(11)")
     Integer telephoneNumber;

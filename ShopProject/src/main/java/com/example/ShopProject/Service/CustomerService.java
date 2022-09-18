@@ -20,6 +20,16 @@ public class CustomerService {
         return customerRepository.findById(uuid).get();
     }
 
+    public Boolean loginCustomer ( String email , String password)
+    {
+        Customer customer =  customerRepository.findByEmailAndPassword(email , Integer.parseInt(password)) ;
+        if ( customer != null ){
+            return  true;
+        }
+        else  {
+            return  false ;
+        }
+    }
     public Customer saveCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
