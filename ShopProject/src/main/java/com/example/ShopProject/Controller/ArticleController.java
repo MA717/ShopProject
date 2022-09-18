@@ -5,7 +5,6 @@ import com.example.ShopProject.Entity.Season;
 import com.example.ShopProject.Service.ArticleService;
 import com.example.ShopProject.Service.SeasonService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

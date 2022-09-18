@@ -24,7 +24,7 @@ public class CustomerController {
     }
 
     @PutMapping("/Customer/update/{email}")
-    public int UpdateCustomer(@PathVariable("email") String email, @RequestBody Integer telephoneNr) {
+    public int updateCustomer(@PathVariable("email") String email, @RequestBody Integer telephoneNr) {
 
         return customerService.updateCusomerTelephoneNr(email, telephoneNr);
     }

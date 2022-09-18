@@ -1,5 +1,9 @@
 package com.example.ShopProject.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +13,8 @@ import org.hibernate.annotations.Type;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Component
@@ -17,6 +23,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "articleId")
 
 @Table(name = "tbl_article")
 public class Article {
@@ -38,9 +47,14 @@ public class Article {
     @JoinColumn(name = "season_id", referencedColumnName = "season_id", nullable = false)
     Season season;
 
+
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id", nullable = false)
     Category category;
 
+
+    @JsonIgnore
+    @ManyToMany( mappedBy = "articles")
+    List<Order> orders ;
 
 }
