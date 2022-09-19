@@ -14,13 +14,14 @@ public class OrderController  {
     OrderService orderService;
 
 
+    // customer only
     @PostMapping("/order/checkout")
     Order saveOrder(@RequestBody Order order){
        return orderService.SaveOrder(order);
     }
 
 
-    // get order details , both customer and Employee could get this route
+    // get order details ,  Employee could get this route
     @GetMapping("/order/{id}")
     Order getOrder(@PathVariable("id")UUID uuid)
     {

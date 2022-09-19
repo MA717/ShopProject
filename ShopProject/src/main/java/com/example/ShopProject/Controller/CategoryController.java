@@ -26,16 +26,19 @@ public class CategoryController {
        return categoryService.saveCategory(category);
     }
 
+    //
     @GetMapping ("/category/showall")
     List<Category>getAllCategory(){
         return  categoryService.getAllCategories();
     }
+    // employee
     @GetMapping("/category/{id}")
     Category getCategory(@PathVariable("id") UUID uuid)
     {
         return categoryService.getCategory(uuid);
     }
 
+    //employee
     @DeleteMapping("category/delete_category/{id}")
     Boolean deleteCategory(@PathVariable("id") UUID uuid ){
         return  categoryService.deleteCategory(uuid);

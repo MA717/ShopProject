@@ -13,17 +13,23 @@ import java.util.UUID;
 public class SeasonController {
     SeasonService seasonService ;
 
+
+    // Employee
     @PostMapping("/season")
     public Season AddSeason(@RequestBody Season season)
     {
         return seasonService.saveSeason(season);
     }
+
+    // Employee
     @GetMapping("/season/{id}")
     public Season getSeason(@PathVariable("id")UUID uuid)
     {
         return seasonService.getSeason(uuid);
     }
 
+
+    // customer & employee
     @GetMapping("/season/showall")
     public List<Season> getAllSeason(){
         return  seasonService.showAllSeason();

@@ -13,13 +13,13 @@ import java.util.UUID;
 public class CustomerController {
     CustomerService customerService;
 
-
+    //
     @PostMapping("/customer/signup")
     public Customer addCustomer(@RequestBody Customer customer) {
         return customerService.saveCustomer(customer);
     }
 
-
+    //
     @PostMapping("/customer/login")
     public Boolean loginCustomer(@RequestBody Map<String, String> login) {
 
@@ -33,6 +33,7 @@ public class CustomerController {
     }
 
     // update customer phone number
+    //
     @PutMapping("/Customer/update_number/{email}")
     public int updateCustomer(@PathVariable("email") String email, @RequestBody Integer telephoneNr) {
 
