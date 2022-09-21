@@ -50,10 +50,9 @@ public class Customer {
     @Column(name = "email_address", nullable = false)
     String email;
 
-    @Column(name = "user_password",
-            nullable = false,
-            columnDefinition = "Int(6)")
-    int password;
+    @Column(name = "user_password", nullable = false, columnDefinition = "char(20)")
+
+    String password;
 
 
 }
