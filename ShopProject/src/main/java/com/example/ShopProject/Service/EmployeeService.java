@@ -5,6 +5,8 @@ import com.example.ShopProject.Repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -14,10 +16,14 @@ import java.awt.*;
 @AllArgsConstructor
 @Builder
 public class EmployeeService {
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     EmployeeRepository employeeRepository ;
 
     public Employee saveEmployee ( Employee employee )
     {
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
           return  employeeRepository.save(employee);
     }
 

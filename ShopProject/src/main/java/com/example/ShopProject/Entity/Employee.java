@@ -46,6 +46,6 @@ public class Employee {
     @Column(name= "phone" , nullable = false , columnDefinition = "Int(11)")
     Integer telephoneNumber;
 
-    @Column(name = "password", nullable = false, columnDefinition = "char(20)")
+    @Column(name = "password", nullable = false, columnDefinition = "char(255)")
     String password;
 }

@@ -2,9 +2,11 @@ package com.example.ShopProject.Controller;
 
 import com.example.ShopProject.Entity.Customer;
 import com.example.ShopProject.Entity.Tokens;
+import com.example.ShopProject.Entity.User;
 import com.example.ShopProject.Event.ResendTokenEvent;
 import com.example.ShopProject.Event.SignUpEvent;
 import com.example.ShopProject.Service.CustomerService;
+import com.example.ShopProject.Service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -18,6 +20,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CustomerController {
     CustomerService customerService;
+    UserService userService;
 
     @Autowired
     ApplicationEventPublisher publisher;
@@ -27,6 +30,12 @@ public class CustomerController {
     @PostMapping("/customer/signup")
     public String addCustomer(@RequestBody Customer customer, final HttpServletRequest request) {
         customerService.saveCustomer(customer);
+        User user = User.builder().username(customer.getEmail())
+                .password(customer.getPassword())
+                .Role("Customer")
+                .name(customer.getFirstName())
+                        .build();
+        userService.saveUser(user);
         publisher.publishEvent(new SignUpEvent(customer,
                 applicationUrl(request)
         ));
@@ -34,22 +43,21 @@ public class CustomerController {
     }
 
     @GetMapping("customer/resend_token")
-    public String resendToken( @RequestParam ("token") String oldToken , HttpServletRequest request ){
+    public String resendToken(@RequestParam("token") String oldToken, HttpServletRequest request) {
         Tokens token = customerService.getNewToken(oldToken);
-        publisher.publishEvent(new ResendTokenEvent( token , applicationUrl(request)));
-        return  "verification link sent " ;
+        publisher.publishEvent(new ResendTokenEvent(token, applicationUrl(request)));
+        return "verification link sent ";
     }
 
 
     @GetMapping("/verify_signup")
-    public  String verifyRegisteration(@RequestParam("token") String token ){
+    public String verifyRegisteration(@RequestParam("token") String token) {
         String result = customerService.validateToken(token);
 
-        if ( result.equals("valid")){
+        if (result.equals("valid")) {
             return "User Verfies Successfuly";
-        }
-        else {
-            return  "Invalid User ";
+        } else {
+            return "Invalid User ";
         }
     }
 
@@ -61,12 +69,7 @@ public class CustomerController {
                 request.getContextPath();
     }
 
-    @CrossOrigin
-    @PostMapping("/customer/login")
-    public Boolean loginCustomer(@RequestBody Map<String, String> login) {
 
-        return customerService.loginCustomer(login.get("email"), login.get("password"));
-    }
 
     // only employee can get the customer information by id
     @GetMapping("/customer/{id}")
