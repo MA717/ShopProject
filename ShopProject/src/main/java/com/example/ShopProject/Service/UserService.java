@@ -1,8 +1,7 @@
 package com.example.ShopProject.Service;
 
-import com.example.ShopProject.Entity.Role;
+
 import com.example.ShopProject.Entity.User;
-import com.example.ShopProject.Repository.RoleRepository;
 import com.example.ShopProject.Repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,22 +21,11 @@ import java.util.Collection;
 @Slf4j
 public class UserService implements UserDetailsService {
     UserRepository userRepository;
-    RoleRepository roleRepository;
 
     public User saveUser(User user) {
         return userRepository.save(user);
     }
 
-    public Role saveRole(Role role) {
-        return roleRepository.save(role);
-    }
-
-    public void addRoleToUser(String username, String roleName) {
-        log.info("Adding role{} to user {} " , roleName , username );
-        User user = userRepository.findUserByUsername(username);
-        Role role = roleRepository.findRoleByName(roleName);
-//        user.getRoles().add(role);
-    }
 
     public User getUser(String username) {
 

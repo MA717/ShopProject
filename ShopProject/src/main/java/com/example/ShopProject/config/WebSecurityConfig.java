@@ -51,13 +51,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     customAuthenticationFilter.setFilterProcessesUrl("/customer_employee/login");
         http.cors().and().csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.authorizeRequests().antMatchers(POST, "/employee/signup","/customer/signup").permitAll();
-        http.authorizeRequests().antMatchers(GET , "/order/**","/Customer/update_number").hasAnyAuthority("Customer");
-        http.authorizeRequests().antMatchers(PUT , "/order/{id}/status").hasAnyAuthority("Employee");
+        http.authorizeRequests().antMatchers(GET,"/verify_signup?token={}", "/verify_signup/**").permitAll();
+        http.authorizeRequests().antMatchers(POST, "/employee/signup","/customer/signup", "/season/{id}","/season/showall").permitAll();
+        http.authorizeRequests().antMatchers(GET , "/order/checkout","/Customer/update_number").hasAnyAuthority("Customer");
+        http.authorizeRequests().antMatchers(PUT , "/order/{id}","/order/{id}/status").hasAnyAuthority("Employee");
+        http.authorizeRequests().antMatchers(POST ,"/category","/season" ,"/article/add").hasAnyAuthority("Employee");
+
 
         http.authorizeRequests().anyRequest().authenticated();
 
-        // http.authorizeRequests().antMatchers(GET , ).hasAnyAuthority("Customer");
 
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAutherizationFilter(), UsernamePasswordAuthenticationFilter.class);
